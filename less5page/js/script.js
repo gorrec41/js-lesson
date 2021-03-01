@@ -52,7 +52,10 @@ function filmListSort() {
         itemList[j].remove();
     }
     for (let k = 0; k < movieDBList.length; k++){
-        filmList.innerHTML = '<li><a class="promo__menu-item promo__menu-item_active" href="#">' + movieDBList[k] +'</a></li>';
+        let li = document.createElement('li');
+        li.classList.add('promo__interactive-item');
+        li.innerHTML = [k+1]+ ' ' +movieDBList[k] + '<div class="delete"></div>';
+        filmList.append(li);
     }
     
 }

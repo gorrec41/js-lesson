@@ -23,28 +23,32 @@ const movieDB = {
         "Скотт Пилигрим против..."
     ]
 },
-    promoAdv = document.querySelector('.promo__adv'),
-    imgPromo = promoAdv.querySelectorAll('img'),
+    promoAdv = document.querySelectorAll('.promo__adv img'),
+    imgPromo = document.querySelectorAll('img'),
     imgBg = document.querySelector('.promo__bg'),
     genre = document.querySelector('.promo__genre'),
     filmList = document.querySelector('.promo__interactive-list'),
     itemList = filmList.querySelectorAll('.promo__interactive-item');
     
 
-
-function remuveImg() {
-    for (let i = 0; i < imgPromo.length; i++) {
-        imgPromo[i].remove();
-    }
-}
-
-function promoGenre() {
-    genre.innerHTML = 'драма';
-}
-
-function newImgBgPromo() {
+    promoAdv.forEach(item => {
+        item.remove();
+    });
+    genre.textContent = 'драма';
     imgBg.style.backgroundImage= "url('./img/bg.jpg')";
-}
+// function remuveImg() {
+//     for (let i = 0; i < imgPromo.length; i++) {
+//         imgPromo[i].remove();
+//     }
+// }
+
+// function promoGenre() {
+//     genre.innerHTML = 'драма';
+// }
+
+// function newImgBgPromo() {
+//     imgBg.style.backgroundImage= "url('./img/bg.jpg')";
+// }
 function filmListSort() {
     let movieDBList=movieDB.movies.sort()
     console.log(movieDBList);
@@ -52,13 +56,15 @@ function filmListSort() {
         itemList[j].remove();
     }
     for (let k = 0; k < movieDBList.length; k++){
-        filmList.innerHTML = '<li><a class="promo__menu-item promo__menu-item_active" href="#">' + movieDBList[k] +'</a></li>';
+        let li = document.createElement('li');
+        li.classList.add('promo__interactive-item');
+        li.innerHTML = [k+1]+ ' ' +movieDBList[k] + '<div class="delete"></div>';
+        filmList.append(li);
     }
-    
 }
-remuveImg();
-promoGenre();
-newImgBgPromo();
+// remuveImg();
+// promoGenre();
+// newImgBgPromo();
 // console.log(itemList);
 filmListSort();
 console.log(itemList);
